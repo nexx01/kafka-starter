@@ -44,14 +44,20 @@ public class JavaKafkaConsumerExample {
         consumer.assign(tps);
         consumer.seekToBeginning(tps);
 
-        var consumerRecords = consumer.poll(30000);
 
-        if (!consumerRecords.isEmpty()) {
-            System.out.println("SUCCESS");
-            System.out.println(consumerRecords.iterator().next().value());
+
+        while (true){
+            var consumerRecords = consumer.poll(30000);
+            if (!consumerRecords.isEmpty()) {
+                System.out.println("SUCCESS");
+                System.out.println(consumerRecords.iterator().next().value());
+
+            }
 
         }
+        //consumer.close();
 
-        consumer.close();
+
+
     }
 }
